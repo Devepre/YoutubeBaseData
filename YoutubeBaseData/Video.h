@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Video : NSObject
 
@@ -9,6 +10,8 @@
 @property (nonatomic, strong) NSString  *videoDescription;
 @property (nonatomic, strong) NSString  *thumbnailURL;
 @property (nonatomic, strong) NSDate    *pubDate;
+
+@property (nonatomic, strong) UIImage   *thumbnailImage;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

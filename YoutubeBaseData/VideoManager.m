@@ -35,8 +35,16 @@
                 NSMutableArray *videoList = [[NSMutableArray alloc] init];
                 
                 for (NSDictionary *videoDetail in videos) {
-                    if (videoDetail[@"id"][@"videoId"]){
-                        [videoList addObject:[[Video alloc]initWithDictionary:videoDetail]];
+                    if (videoDetail[@"id"][@"videoId"]) {
+                        Video *newVideo = [[Video alloc]initWithDictionary:videoDetail];
+                        
+                        //loading image thumgnail
+                        NSString *imageURLString = videoDetail[@"snippet"][@"thumbnails"][@"high"][@"url"];
+                        [self dowloadImageWithURL:imageURLString completionBlock:^(UIImage *downloadedImage) {
+                            newVideo.thumbnailImage = downloadedImage;
+                        }];
+                        
+                        [videoList addObject:newVideo];
                     }
                 }
                 
@@ -51,6 +59,20 @@
                 NSLog(@"Error pasing JSON:\n%@", error);
             }
         } else {
+            NSLog(@"Error retreiving data:\n%@", error);
+        }
+    }];
+    [downloadTask resume];
+    
+}
+
+- (void)dowloadImageWithURL:(NSString *)imageURLString completionBlock:(void (^)(UIImage *))completionBlock{
+    NSURL *imageURL = [NSURL URLWithString:imageURLString];
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            UIImage *downloadedImage = [UIImage imageWithData:data];
+            completionBlock(downloadedImage);
+        } else  {
             NSLog(@"Error retreiving data:\n%@", error);
         }
     }];
