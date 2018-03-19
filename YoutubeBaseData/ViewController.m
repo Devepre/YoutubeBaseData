@@ -36,6 +36,15 @@
                               
                           });
                           
+                          //another way to do work on Main Thread
+                          /*
+                          Video *video = [ytVideos objectAtIndex:0];
+                          NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+                              [self.playerView loadWithVideoId:video.videoID];
+                          }];
+                          NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+                          [mainQueue addOperation:operation]; */
+                          
                       }];
     
 }
