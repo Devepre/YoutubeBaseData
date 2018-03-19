@@ -13,8 +13,7 @@
         _channelTitle = dictionary[@"snippet"][@"channelTitle"];
         _videoDescription = dictionary[@"snippet"][@"description"];
         _pubDate = [dictionary[@"snippet"][@"publishedAt"]dateWithJSONString];
-        _thumbnailURL = dictionary[@"snippet"][@"thumbnails"]
-        [@"high"][@"url"];
+        _thumbnailURL = dictionary[@"snippet"][@"thumbnails"][@"high"][@"url"];
     }
     
     return self;
