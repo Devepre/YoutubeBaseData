@@ -2,10 +2,6 @@
 
 @implementation NSString (ToDate)
 
-/*
- * take the current string and converts it into a manipulatable
- * NSDate object and then returns that object
- */
 - (NSDate *)dateWithJSONString {
     [NSDateFormatter setDefaultFormatterBehavior: NSDateFormatterBehavior10_4];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

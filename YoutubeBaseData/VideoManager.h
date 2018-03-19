@@ -2,7 +2,6 @@
 
 @interface VideoManager : NSObject
 
-- (void)getVideos:(NSString *)channelID
-  completionBlock:(void (^)(NSMutableArray *))completionBlock;
+- (void)getVideosForChannel:(NSString *)channelID completionBlock:(void (^)(NSMutableArray *))completionBlock;
 
 @end

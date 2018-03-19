@@ -3,76 +3,53 @@
 
 @implementation VideoManager
 
-- (void)getVideos:(NSString *)channelID completionBlock:(void (^)(NSMutableArray *))completionBlock {
-    // The API Key you registered for earlier
+- (void)getVideosForChannel:(NSString *)channelID completionBlock:(void (^)(NSMutableArray *))completionBlock {
     NSString *apiKey = @"AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw";
-    // only used if we want to limit search by channel
-    NSString *optionalParams = @"";
-    
-    // if channel ID provided, create the paramter
+    NSString *baseURL = @"https://www.googleapis.com/youtube/v3";
+    NSString *searchPhrase = @"objective-c";
+    NSInteger maxResults = 20;
+    NSString *optionalChannelParams = @"";
     if(channelID) {
-        optionalParams = [NSString stringWithFormat:@"&channelId=%@", channelID];
+        optionalChannelParams = [NSString stringWithFormat:@"&channelId=%@", channelID];
     }
     
-    // format the URL request to the YouTube API:
-    // max results set to 20, language set to english,
-    // order by most relevant
-    NSString *URL = [NSString
-                     stringWithFormat:@"https://www.googleapis.com/youtube"
-                     @"/v3/search?part=snippet&regionCode=US"
-                     @"&relevanceLanguage=en&$type=video&order=relevance"
-                     @"&maxResults=20&q=%@&key=%@&alt=json%@",
-                     @"objective-c", apiKey, optionalParams];
+    NSString *stringURL = [NSString stringWithFormat:@"%@"
+                     @"/search?part=snippet"
+                     @"&$type=video&order=relevance"
+                     @"&maxResults=%ld"
+                     @"&q=%@"
+                     @"&key=%@"
+                     @"&alt=json%@",
+                     baseURL, (long)maxResults, searchPhrase, apiKey, optionalChannelParams];
+    NSURL *URL = [NSURL URLWithString:stringURL];
     
-    printf("URL is: %s\n", [URL UTF8String]);
-    
-    /*NSURL *url = [NSURL URLWithString:URL];
-    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
-                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                              if (!error) {
-                                                  NSObject *obj = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                                  NSLog(@"%@", obj);
-                                                  
-                                              }
-                                          }];
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:URL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSError *errorJSON = nil;
+            NSDictionary *receivedDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&errorJSON];
+            if (!errorJSON) {
+                printf("<Received object>\n%s\n<End of received object>\n", [[receivedDictionary description] UTF8String]);
+
+                NSArray *videos = (NSArray *)[receivedDictionary objectForKey:@"items"];
+                NSMutableArray *videoList = [[NSMutableArray alloc] init];
+                
+                for (NSDictionary *videoDetail in videos) {
+                    if (videoDetail[@"id"][@"videoId"]){
+                        [videoList addObject:[[Video alloc]initWithDictionary:videoDetail]];
+                    }
+                }
+                
+                // pass the array of video objects back to user of VideoManager
+                completionBlock(videoList);
+            } else {
+                NSLog(@"Error pasing JSON:\n%@", error);
+            }
+        } else {
+            NSLog(@"Error retreiving data:\n%@", error);
+        }
+    }];
     [downloadTask resume];
-    */
     
-    
-    // initialize the request with the encoded URL
-    NSURLRequest *request = [[NSURLRequest alloc]
-                             initWithURL:[NSURL URLWithString:[URL
-                                                               stringByAddingPercentEncodingWithAllowedCharacters:
-                                                               [NSCharacterSet URLQueryAllowedCharacterSet]]]];
-    
-    
-    // create a session and start the request
-    NSURLSession *session = [NSURLSession sharedSession];
-    [[session dataTaskWithRequest:request
-                completionHandler:^(NSData *data,
-                                    NSURLResponse *response,
-                                    NSError *error) {
-                    if (!error) {
-                        NSObject *obj = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                        NSLog(@"%@", obj);
-                        
-                        Video *vid = [[Video alloc] init];
-                        
-                        // create an array of Video objects from
-                        // the JSON received
-                        [vid getVideoList:[NSJSONSerialization
-                                           JSONObjectWithData:data
-                                           options:0 error:nil] completionBlock:
-                         ^(NSMutableArray *videoList) {
-                             // return the final list
-                             completionBlock(videoList);
-                         }];
-                    }
-                    else {
-                        // TODO: better error handling
-                        NSLog(@"error = %@", error);
-                    }
-                }] resume];
 }
 
 @end
