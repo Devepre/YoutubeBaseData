@@ -34,13 +34,16 @@
                 NSArray *videos = (NSArray *)[receivedDictionary objectForKey:@"items"];
                 NSMutableArray *videoList = [[NSMutableArray alloc] init];
                 
+                dispatch_group_t dispatchGroup = dispatch_group_create();
+                
                 for (NSDictionary *videoDetail in videos) {
                     if (videoDetail[@"id"][@"videoId"]) {
                         Video *newVideo = [[Video alloc]initWithDictionary:videoDetail];
                         
-                        //loading image thumgnail
+                        //loading image thumbnails
                         NSString *imageURLString = videoDetail[@"snippet"][@"thumbnails"][@"high"][@"url"];
-                        [self dowloadImageWithURL:imageURLString completionBlock:^(UIImage *downloadedImage) {
+                        dispatch_group_enter(dispatchGroup);
+                        [self dowloadImageWithURL:imageURLString andDispatch:dispatchGroup completionBlock:^(UIImage *downloadedImage) {
                             newVideo.thumbnailImage = downloadedImage;
                         }];
                         
@@ -48,13 +51,11 @@
                     }
                 }
                 
-//                printf("sleeping for 5 seconds\n");
-//                sleep(5);
-//                printf("end of sleeping - now sending URL request\n");
-//                printf("END URL\n");
-                
-                // pass the array of video objects back to user of VideoManager
-                completionBlock(videoList);
+                dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^{
+                    // pass the array of video objects back to user of VideoManager
+                    completionBlock(videoList);
+                });
+
             } else {
                 NSLog(@"Error pasing JSON:\n%@", error);
             }
@@ -66,11 +67,15 @@
     
 }
 
-- (void)dowloadImageWithURL:(NSString *)imageURLString completionBlock:(void (^)(UIImage *))completionBlock{
+- (void)dowloadImageWithURL:(NSString *)imageURLString andDispatch:(dispatch_group_t) dispatchGroup completionBlock:(void (^)(UIImage *))completionBlock{
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
+    
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error) {
             UIImage *downloadedImage = [UIImage imageWithData:data];
+            NSLog(@"image downloaded: %@", downloadedImage);
+            dispatch_group_leave(dispatchGroup);
+            
             completionBlock(downloadedImage);
         } else  {
             NSLog(@"Error retreiving data:\n%@", error);

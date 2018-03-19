@@ -42,6 +42,7 @@ static NSString * const reuseIdentifier = @"Cell";
                               [self.playerView loadWithVideoId:video.videoID];
                               
                               NSLog(@"Reloading view");*/
+                              NSLog(@"Reload sections");
                               [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
                               
                           });
@@ -74,8 +75,15 @@ static NSString * const reuseIdentifier = @"Cell";
     UILabel *videoDescriptionLabel = (UILabel *)[cell viewWithTag:145];
     videoDescriptionLabel.text = [[self.ytVideos objectAtIndex:indexPath.row] videoDescription];
     
-    YTPlayerView *ytVideoPlayerView = [cell viewWithTag:144];
-    [ytVideoPlayerView loadWithVideoId:[[self.ytVideos objectAtIndex:indexPath.row] videoID]];
+//    YTPlayerView *ytVideoPlayerView = [cell viewWithTag:144];
+//    [ytVideoPlayerView loadWithVideoId:[[self.ytVideos objectAtIndex:indexPath.row] videoID]];
+    
+    NSLog(@"populating data");
+    
+    UIImageView *thumbnailImage = [cell viewWithTag:144];
+    UIImage *image = [[self.ytVideos objectAtIndex:indexPath.row] thumbnailImage];
+    thumbnailImage.image = image;
+    NSLog(@"Imgae: %@", image);
     
     return cell;
 }
