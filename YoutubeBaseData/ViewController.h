@@ -12,10 +12,10 @@
 #import "YTPlayerView.h"
 
 @interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *locationPhoto;
 
-@property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+//@property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
+//@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
