@@ -11,11 +11,12 @@
 #import <UIKit/UIKit.h>
 #import "YTPlayerView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITextFieldDelegate>
 
 //@property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
 //@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UITextField *searchQuestionTextField;
 
 @end
 

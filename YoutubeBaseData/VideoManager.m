@@ -3,10 +3,10 @@
 
 @implementation VideoManager
 
-- (void)getVideosForChannel:(NSString *)channelID completionBlock:(void (^)(NSMutableArray *))completionBlock {
+- (void)getVideosFor:(NSString *)searchQ andChannelID:(NSString *)channelID completionBlock:(void (^)(NSMutableArray *))completionBlock {
     NSString *apiKey = @"AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw";
     NSString *baseURL = @"https://www.googleapis.com/youtube/v3";
-    NSString *searchPhrase = @"objective-c";
+//    NSString *searchPhrase = @"objective-c";
     NSInteger maxResults = 20;
     NSString *optionalChannelParams = @"";
     if(channelID) {
@@ -20,7 +20,7 @@
                      @"&q=%@"
                      @"&key=%@"
                      @"&alt=json%@",
-                     baseURL, (long)maxResults, searchPhrase, apiKey, optionalChannelParams];
+                     baseURL, (long)maxResults, searchQ, apiKey, optionalChannelParams];
     NSURL *URL = [NSURL URLWithString:stringURL];
     
     printf("start URL\n");

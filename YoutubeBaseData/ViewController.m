@@ -5,6 +5,7 @@
 @interface ViewController ()
 
 @property (strong, nonatomic) NSMutableArray *ytVideos;
+@property (assign) NSString *searchQuestion;
 
 @end
 
@@ -26,21 +27,21 @@ static NSString * const reuseIdentifier = @"Cell";
     
     VideoManager *videoManager = [[VideoManager alloc] init];
     
-    [videoManager getVideosForChannel:nil
+    [videoManager getVideosFor:self.searchQuestion andChannelID:nil 
                       completionBlock:^(NSMutableArray *videoList) {
                           NSSortDescriptor *sortingDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pubDate"
                                                                                             ascending:NO];
                           self.ytVideos = [[videoList sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortingDescriptor]] mutableCopy];
-                          Video *video = [self.ytVideos objectAtIndex:0];
                           
                           dispatch_async(dispatch_get_main_queue(), ^{
-//                              YTPlayerView *videoPlayerView = [[YTPlayerView alloc] initWithFrame:
-//                                                               CGRectMake(20, 20, self.view.frame.size.width - 40, self.view.frame.size.width - 20)];
-//                              [videoPlayerView loadWithVideoId:video.videoID];
-//                              [self.view addSubview:videoPlayerView];
-//                              [self.playerView loadWithVideoId:video.videoID];
+                              /*Video *video = [self.ytVideos objectAtIndex:0];
+                               YTPlayerView *videoPlayerView = [[YTPlayerView alloc] initWithFrame:
+                                                               CGRectMake(20, 20, self.view.frame.size.width - 40, self.view.frame.size.width - 20)];
+                              [videoPlayerView loadWithVideoId:video.videoID];
+                              [self.view addSubview:videoPlayerView];
+                              [self.playerView loadWithVideoId:video.videoID];
                               
-                              NSLog(@"Reloading view");
+                              NSLog(@"Reloading view");*/
                               [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
                               
                           });
@@ -77,6 +78,18 @@ static NSString * const reuseIdentifier = @"Cell";
     [ytVideoPlayerView loadWithVideoId:[[self.ytVideos objectAtIndex:indexPath.row] videoID]];
     
     return cell;
+}
+
+#pragma mark <UITextFieldDelegate>
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSString *str = textField.text;
+    self.searchQuestion = str;
+    [self performYTTask];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

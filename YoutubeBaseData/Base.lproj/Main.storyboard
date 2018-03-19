@@ -18,9 +18,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bvv-4h-7zo">
-                                <rect key="frame" x="16" y="66" width="343" height="594"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4w-We-usp">
+                                <rect key="frame" x="20" y="40" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search phrase" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yfn-aI-yI5">
+                                <rect key="frame" x="124" y="40" width="231" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Hvf-Kx-8uB"/>
+                                </connections>
+                            </textField>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bvv-4h-7zo">
+                                <rect key="frame" x="20" y="90" width="335" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zxh-Vh-cKF">
                                     <size key="itemSize" width="300" height="300"/>
@@ -30,7 +44,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="bXi-K4-mI5">
-                                        <rect key="frame" x="21.5" y="0.0" width="300" height="300"/>
+                                        <rect key="frame" x="17.5" y="0.0" width="300" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -59,10 +73,22 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yfn-aI-yI5" firstAttribute="leading" secondItem="L4w-We-usp" secondAttribute="trailing" constant="20" id="53I-on-D3x"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bvv-4h-7zo" secondAttribute="bottom" constant="20" id="G8j-i5-emZ"/>
+                            <constraint firstItem="L4w-We-usp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Jub-Qn-bcX"/>
+                            <constraint firstItem="Bvv-4h-7zo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="K0Q-Dc-mf5"/>
+                            <constraint firstItem="Bvv-4h-7zo" firstAttribute="top" secondItem="yfn-aI-yI5" secondAttribute="bottom" constant="20" id="YMk-li-Slv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bvv-4h-7zo" secondAttribute="trailing" constant="20" id="bt8-S6-srI"/>
+                            <constraint firstItem="yfn-aI-yI5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="fMU-CC-uYb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yfn-aI-yI5" secondAttribute="trailing" constant="20" id="nmF-Ap-zDV"/>
+                            <constraint firstItem="L4w-We-usp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="s8j-4U-VSP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Bvv-4h-7zo" id="Bak-vT-0cL"/>
+                        <outlet property="searchQuestionTextField" destination="yfn-aI-yI5" id="xlu-Go-8hC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
