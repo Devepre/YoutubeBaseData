@@ -25,14 +25,15 @@
                           NSSortDescriptor *sortingDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pubDate"
                                                                                             ascending:NO];
                           ytVideos = [[videoList sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortingDescriptor]] mutableCopy];
+                          Video *video = [ytVideos objectAtIndex:0];
                           
                           dispatch_async(dispatch_get_main_queue(), ^{
-                              Video *video = [ytVideos objectAtIndex:0];
-                              YTPlayerView *videoPlayerView = [[YTPlayerView alloc] initWithFrame:
-                                                               CGRectMake(20, 20, self.view.frame.size.width - 40, self.view.frame.size.width - 20)];
-                              [videoPlayerView loadWithVideoId:video.videoID];
-                              [self.view addSubview:videoPlayerView];
-                              //                    [self.playerView loadWithVideoId:video.videoID];
+//                              YTPlayerView *videoPlayerView = [[YTPlayerView alloc] initWithFrame:
+//                                                               CGRectMake(20, 20, self.view.frame.size.width - 40, self.view.frame.size.width - 20)];
+//                              [videoPlayerView loadWithVideoId:video.videoID];
+//                              [self.view addSubview:videoPlayerView];
+                              [self.playerView loadWithVideoId:video.videoID];
+                              self.descriptionLabel.text = video.videoDescription;
                               
                           });
                           

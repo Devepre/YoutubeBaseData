@@ -23,6 +23,7 @@
                      baseURL, (long)maxResults, searchPhrase, apiKey, optionalChannelParams];
     NSURL *URL = [NSURL URLWithString:stringURL];
     
+    printf("start URL\n");
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:URL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             NSError *errorJSON = nil;
@@ -38,6 +39,11 @@
                         [videoList addObject:[[Video alloc]initWithDictionary:videoDetail]];
                     }
                 }
+                
+//                printf("sleeping for 5 seconds\n");
+//                sleep(5);
+//                printf("end of sleeping - now sending URL request\n");
+//                printf("END URL\n");
                 
                 // pass the array of video objects back to user of VideoManager
                 completionBlock(videoList);

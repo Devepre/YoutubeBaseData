@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *locationPhoto;
 
 @property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
 
