@@ -46,7 +46,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="bXi-K4-mI5">
-                                        <rect key="frame" x="17" y="0.0" width="300" height="300"/>
+                                        <rect key="frame" x="18" y="0.0" width="300" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -117,7 +117,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ox-4w-K6Q">
-                                <rect key="frame" x="170.5" y="238.5" width="34" height="30"/>
+                                <rect key="frame" x="171" y="234" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <segue destination="ln2-NQ-W61" kind="unwind" unwindAction="toMainViewUnwindAction:" id="FXM-lC-ElX"/>
@@ -127,17 +127,17 @@
                                 <rect key="frame" x="20" y="40" width="335" height="188.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="TCF-ri-gVE" secondAttribute="height" multiplier="16:9" id="6Sr-vy-GXw"/>
+                                    <constraint firstAttribute="width" secondItem="TCF-ri-gVE" secondAttribute="height" multiplier="16:9" id="485-Ps-UMo"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5ox-4w-K6Q" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="1K7-Nw-qIg"/>
-                            <constraint firstItem="5ox-4w-K6Q" firstAttribute="top" secondItem="TCF-ri-gVE" secondAttribute="bottom" constant="10" id="73J-mt-V7d"/>
-                            <constraint firstItem="TCF-ri-gVE" firstAttribute="leading" secondItem="vFl-BT-Vma" secondAttribute="leading" constant="20" id="jOI-EV-odL"/>
-                            <constraint firstItem="vFl-BT-Vma" firstAttribute="trailing" secondItem="TCF-ri-gVE" secondAttribute="trailing" constant="20" id="tca-gF-878"/>
-                            <constraint firstItem="TCF-ri-gVE" firstAttribute="top" secondItem="vFl-BT-Vma" secondAttribute="top" constant="20" id="yAG-R2-vhl"/>
+                            <constraint firstItem="5ox-4w-K6Q" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="0JM-Vv-8Cl"/>
+                            <constraint firstItem="TCF-ri-gVE" firstAttribute="top" secondItem="vFl-BT-Vma" secondAttribute="top" constant="20" id="0bS-CM-rKc"/>
+                            <constraint firstItem="vFl-BT-Vma" firstAttribute="trailing" secondItem="TCF-ri-gVE" secondAttribute="trailing" constant="20" id="N2N-A8-xRk"/>
+                            <constraint firstItem="5ox-4w-K6Q" firstAttribute="top" secondItem="TCF-ri-gVE" secondAttribute="bottom" constant="5" id="uC9-ub-XZZ"/>
+                            <constraint firstItem="TCF-ri-gVE" firstAttribute="leading" secondItem="vFl-BT-Vma" secondAttribute="leading" constant="20" id="ysl-hH-IEQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vFl-BT-Vma"/>
                     </view>
