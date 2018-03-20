@@ -15,9 +15,13 @@ static NSString *apiKey = @"AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw";
             NSDictionary *receivedDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&errorJSON];
             if (!errorJSON) {
                 NSArray *videos = (NSArray *)[receivedDictionary objectForKey:@"items"];
-                [self downloadImagesFromArray:videos completionBlock:^(NSMutableArray *videos) {
-                    completionBlock(videos);
-                }];
+                if (videos) {
+                    [self downloadImagesFromArray:videos completionBlock:^(NSMutableArray *videos) {
+                        completionBlock(videos);
+                    }];
+                } else {
+                    NSLog(@"Error during getting video list occured. Response is %@", receivedDictionary);
+                }
             } else {
                 NSLog(@"Error pasing JSON:\n%@", error);
             }
