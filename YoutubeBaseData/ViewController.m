@@ -1,6 +1,7 @@
 #import "ViewController.h"
 #import "VideoManager.h"
 #import "Video.h"
+#import "VideoViewController.h"
 
 @interface ViewController ()
 
@@ -98,6 +99,25 @@ static NSString * const reuseIdentifier = @"Cell";
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark - Navigation
+- (IBAction)toMainViewUnwindAction:(UIStoryboardSegue*)unwindSegue {
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showVideoSegue"]) {
+        if ([sender isKindOfClass:[UICollectionViewCell class]]) {
+            UICollectionViewCell *cell = (UICollectionViewCell *)sender;
+            NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+            if (indexPath) {
+                NSInteger index = indexPath.row;
+                VideoViewController *destinationController = (VideoViewController *)[segue destinationViewController];
+                destinationController.video = [self.ytVideos objectAtIndex:index];
+            }
+        }
+    }
 }
 
 @end
