@@ -54,7 +54,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="145" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0CD-Jw-DsT">
-                                                    <rect key="frame" x="13" y="174" width="274" height="21"/>
+                                                    <rect key="frame" x="35" y="174" width="252" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -65,12 +65,21 @@
                                                         <constraint firstAttribute="width" secondItem="h3z-eG-bMb" secondAttribute="height" multiplier="16:9" id="SMM-jV-jDT"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" tag="146" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="amZ-4N-7WJ">
+                                                    <rect key="frame" x="0.0" y="174" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="amZ-4N-7WJ" secondAttribute="height" id="BG7-16-Tjg"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="amZ-4N-7WJ" firstAttribute="top" secondItem="h3z-eG-bMb" secondAttribute="bottom" constant="5" id="3mq-cz-YOZ"/>
+                                            <constraint firstItem="amZ-4N-7WJ" firstAttribute="leading" secondItem="bXi-K4-mI5" secondAttribute="leading" id="BFv-5N-coc"/>
                                             <constraint firstItem="h3z-eG-bMb" firstAttribute="leading" secondItem="bXi-K4-mI5" secondAttribute="leading" id="MIZ-cD-zkT"/>
+                                            <constraint firstAttribute="bottom" secondItem="amZ-4N-7WJ" secondAttribute="bottom" constant="5" id="MdD-QT-O5Z"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="0CD-Jw-DsT" secondAttribute="trailing" constant="5" id="Z5i-5X-B6p"/>
-                                            <constraint firstItem="0CD-Jw-DsT" firstAttribute="leading" secondItem="bXi-K4-mI5" secondAttribute="leadingMargin" constant="5" id="lKz-wQ-6Nn"/>
+                                            <constraint firstItem="0CD-Jw-DsT" firstAttribute="leading" secondItem="amZ-4N-7WJ" secondAttribute="trailing" constant="10" id="cax-4g-N8p"/>
                                             <constraint firstAttribute="trailing" secondItem="h3z-eG-bMb" secondAttribute="trailing" id="vMu-FB-OcK"/>
                                             <constraint firstItem="h3z-eG-bMb" firstAttribute="top" secondItem="bXi-K4-mI5" secondAttribute="top" id="wEL-gH-cea"/>
                                             <constraint firstItem="0CD-Jw-DsT" firstAttribute="top" secondItem="h3z-eG-bMb" secondAttribute="bottom" constant="5" id="zrm-Ub-3fj"/>

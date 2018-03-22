@@ -59,6 +59,10 @@ static NSString * const reuseIdentifier = @"Cell";
     UIImage *image = [[self.ytVideos objectAtIndex:indexPath.row] thumbnailImage];
     thumbnailImage.image = image;
     
+    UIImageView *channelThumbnailImage = [cell viewWithTag:146];
+    UIImage *channelImage = [[self.ytVideos objectAtIndex:indexPath.row] channelThumbnailImage];
+    channelThumbnailImage.image = channelImage;
+    
     return cell;
 }
 
