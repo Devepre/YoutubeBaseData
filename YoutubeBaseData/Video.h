@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSDate    *pubDate;
 
 @property (nonatomic, strong) UIImage   *thumbnailImage;
+@property (nonatomic, strong) UIImage   *channelThumbnailImage;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
