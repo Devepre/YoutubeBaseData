@@ -75,9 +75,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark - Navigation
-- (IBAction)toMainViewUnwindAction:(UIStoryboardSegue*)unwindSegue {
-    
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showVideoSegue"]) {
