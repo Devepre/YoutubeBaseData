@@ -134,12 +134,19 @@
                                     <constraint firstAttribute="width" secondItem="TCF-ri-gVE" secondAttribute="height" multiplier="16:9" id="485-Ps-UMo"/>
                                 </constraints>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdF-9O-eML">
+                                <rect key="frame" x="37" y="273" width="300" height="374"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="top" secondItem="vFl-BT-Vma" secondAttribute="top" constant="20" id="0bS-CM-rKc"/>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="width" secondItem="199-P0-Vko" secondAttribute="width" multiplier="4/5" id="2L6-AC-uGE"/>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="57X-3r-nIk"/>
+                            <constraint firstItem="vFl-BT-Vma" firstAttribute="bottom" secondItem="tdF-9O-eML" secondAttribute="bottom" constant="20" id="Fzt-go-QJj"/>
+                            <constraint firstItem="tdF-9O-eML" firstAttribute="top" secondItem="TCF-ri-gVE" secondAttribute="bottom" constant="20" id="Soj-EU-m4o"/>
+                            <constraint firstItem="tdF-9O-eML" firstAttribute="width" secondItem="199-P0-Vko" secondAttribute="width" multiplier="4/5" id="t8f-5V-sLs"/>
+                            <constraint firstItem="tdF-9O-eML" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="uhv-pC-RaD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vFl-BT-Vma"/>
                     </view>

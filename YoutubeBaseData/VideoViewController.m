@@ -1,5 +1,6 @@
 #import "VideoViewController.h"
 #import "Video.h"
+#import "VideoManager.h"
 
 @interface VideoViewController ()
 
@@ -12,16 +13,19 @@
     // Do any additional setup after loading the view.
     
     if (self.video) {
-         [self.videoPlayer loadWithVideoId:self.video.videoID];
+        [self.videoPlayer loadWithVideoId:self.video.videoID];
     } else {
         NSLog(@"The video ID is absent!");
     }
    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)performYTTask {
+    VideoManager *videoManager = [[VideoManager alloc] init];
+    [videoManager getCommentsThreadsForVideoID:self.video.videoID completionBlock:^(NSArray *commentThreads) {
+        NSLog(@"Comment Thread:\n%@", commentThreads);
+    }];
+    
 }
 
 /*
