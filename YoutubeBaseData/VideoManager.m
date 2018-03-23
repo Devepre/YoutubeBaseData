@@ -1,11 +1,15 @@
 #import "VideoManager.h"
 #import "Video.h"
 #import "Channel.h"
+#import "CommentThread.h"
+#import "Comment.h"
 
 static NSString *baseURL = @"https://www.googleapis.com/youtube/v3";
 static NSString *apiKey = @"AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw";
 
 @implementation VideoManager
+
+#pragma mark - Downloading objects
 
 - (void)getVideosFor:(NSString *)searchQ andChannelID:(NSString *)channelID andMaxResults:(NSInteger)maxResults completionBlock:(void (^)(NSMutableArray *))completionBlock {
     NSURL *URL = [self generateURLWithSearchQuestion:searchQ andChannelID:channelID andMaxResults:maxResults];
@@ -35,6 +39,22 @@ static NSString *apiKey = @"AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw";
         }
     }];
     
+}
+
+- (void)getCommentsThreadsForVideoID: (NSString *)videoID completionBlock:(void (^)(NSArray *))completionBlock {
+    NSURL *URL = [self generateURLListOfCommentsForVideo:videoID];
+    
+    [self getArrayOfObjectsFromURL:URL forObjectKey:@"items" completionBlock:^(NSArray *commentThreads) {
+        NSMutableArray *commentsArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *commentThreadDetail in commentThreads) {
+            if (commentThreadDetail[@"id"]) {
+                CommentThread *commentThread = [[CommentThread alloc] initWithDictionary:commentThreadDetail];
+                [commentsArray addObject:commentThread];
+            }
+        }
+        completionBlock(commentsArray);
+        
+    }];
 }
 
 - (void)getArrayOfObjectsFromURL: (NSURL *)URL forObjectKey: (NSString *)objectKey completionBlock:(void (^)(NSArray *))completionBlock {
@@ -106,7 +126,6 @@ static NSString *apiKey = @"AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw";
 
 - (NSURL *)generateURLWithSearchQuestion:(NSString *)searchQ andChannelID:(NSString *) channelID andMaxResults:(NSInteger)maxResults{
     NSString *optionalChannelParams = channelID ? [NSString stringWithFormat:@"&channelId=%@", channelID] : @"";
-    
     NSString *stringURL = [NSString stringWithFormat:@"%@"
                            @"/search?part=snippet"
                            @"&$type=video&order=relevance"
@@ -116,7 +135,6 @@ static NSString *apiKey = @"AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw";
                            @"&alt=json%@",
                            baseURL, (long)maxResults, searchQ, apiKey, optionalChannelParams];
     NSURL *URL = [NSURL URLWithString:stringURL];
-    
     return URL;
 }
 
@@ -126,7 +144,17 @@ static NSString *apiKey = @"AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw";
                            @"&id=%@"
                            @"&key=%@",
                            baseURL, channelName, apiKey];
-    
+    NSURL *URL = [NSURL URLWithString:stringURL];
+    return URL;
+}
+
+- (NSURL *)generateURLListOfCommentsForVideo: (NSString *)videoID {
+    NSString *stringURL = [NSString stringWithFormat:@"%@"
+                           @"/commentThreads?part=snippet%%2Creplies"
+                           @"&videoId=%@"
+                           @"&key=%@",
+                           baseURL, videoID, apiKey];
+    printf("Comments URL:\n%s\n", [stringURL UTF8String]);
     NSURL *URL = [NSURL URLWithString:stringURL];
     return URL;
 }

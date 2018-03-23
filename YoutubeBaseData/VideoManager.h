@@ -5,5 +5,6 @@
 
 - (void)getVideosFor:(NSString *)searchQ andChannelID:(NSString *)channelID andMaxResults:(NSInteger)maxResults completionBlock:(void (^)(NSMutableArray *))completionBlock;
 - (void)getImageForChannel: (NSString *)channelName  completionBlock:(void (^)(UIImage *))completionBlock;
+- (void)getCommentsThreadsForVideoID: (NSString *)videoID completionBlock:(void (^)(NSArray *))completionBlock;
 
 @end
