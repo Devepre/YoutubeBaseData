@@ -63,6 +63,10 @@ static NSString * const reuseIdentifier = @"Cell";
     UIImage *channelImage = [[self.ytVideos objectAtIndex:indexPath.row] channelThumbnailImage];
     channelThumbnailImage.image = channelImage;
     
+    //round corners
+    channelThumbnailImage.clipsToBounds = YES;
+    channelThumbnailImage.layer.cornerRadius = channelThumbnailImage.frame.size.width / 2;
+    
     return cell;
 }
 
