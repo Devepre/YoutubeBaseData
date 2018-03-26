@@ -134,23 +134,39 @@
                                     <constraint firstAttribute="width" secondItem="TCF-ri-gVE" secondAttribute="height" multiplier="16:9" id="485-Ps-UMo"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdF-9O-eML">
-                                <rect key="frame" x="37" y="273" width="300" height="374"/>
-                            </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="trK-0m-Aax">
+                                <rect key="frame" x="-0.5" y="273" width="375" height="374"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Oe2-Zc-h4E">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oe2-Zc-h4E" id="XIf-A7-Bpl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Onj-am-GzY" id="hKc-pb-J4q"/>
+                                    <outlet property="delegate" destination="Onj-am-GzY" id="Xn2-Py-vIp"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="top" secondItem="vFl-BT-Vma" secondAttribute="top" constant="20" id="0bS-CM-rKc"/>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="width" secondItem="199-P0-Vko" secondAttribute="width" multiplier="4/5" id="2L6-AC-uGE"/>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="57X-3r-nIk"/>
-                            <constraint firstItem="vFl-BT-Vma" firstAttribute="bottom" secondItem="tdF-9O-eML" secondAttribute="bottom" constant="20" id="Fzt-go-QJj"/>
-                            <constraint firstItem="tdF-9O-eML" firstAttribute="top" secondItem="TCF-ri-gVE" secondAttribute="bottom" constant="20" id="Soj-EU-m4o"/>
-                            <constraint firstItem="tdF-9O-eML" firstAttribute="width" secondItem="199-P0-Vko" secondAttribute="width" multiplier="4/5" id="t8f-5V-sLs"/>
-                            <constraint firstItem="tdF-9O-eML" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="uhv-pC-RaD"/>
+                            <constraint firstItem="trK-0m-Aax" firstAttribute="width" secondItem="199-P0-Vko" secondAttribute="width" id="Hss-GM-pMu"/>
+                            <constraint firstItem="trK-0m-Aax" firstAttribute="top" secondItem="TCF-ri-gVE" secondAttribute="bottom" constant="20" id="Wm7-35-acO"/>
+                            <constraint firstItem="trK-0m-Aax" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="tsD-TQ-xmG"/>
+                            <constraint firstItem="vFl-BT-Vma" firstAttribute="bottom" secondItem="trK-0m-Aax" secondAttribute="bottom" constant="20" id="zAh-3r-g76"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vFl-BT-Vma"/>
                     </view>
                     <connections>
+                        <outlet property="commentsTable" destination="trK-0m-Aax" id="kCg-Hb-5YZ"/>
                         <outlet property="videoPlayer" destination="TCF-ri-gVE" id="z5U-MO-AnE"/>
                     </connections>
                 </viewController>
