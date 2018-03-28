@@ -18,6 +18,8 @@
     
     if (self.video) {
         [self.videoPlayer loadWithVideoId:self.video.videoID];
+        NSLog(@"Video: %@", self.video.videoID);
+        NSLog(@"Channel id: %@", self.video.channelID);
     } else {
         NSLog(@"The video ID is absent!");
     }

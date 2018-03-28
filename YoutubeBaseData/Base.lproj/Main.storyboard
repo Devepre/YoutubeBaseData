@@ -152,11 +152,6 @@
                                     <action selector="didTapSignOut:" destination="QBU-iH-lZS" eventType="touchUpInside" id="SSd-D5-xaT"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vuD-5k-bvo" customClass="GIDSignInButton">
-                                <rect key="frame" x="16" y="83" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93945490600000003" green="1" blue="0.91010548250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Google Sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woZ-Zq-qZb">
                                 <rect key="frame" x="34" y="139" width="250" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -164,12 +159,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vuD-5k-bvo" customClass="GIDSignInButton">
+                                <rect key="frame" x="16" y="83" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93945490600000003" green="1" blue="0.91010548250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOz-uW-0bL">
+                                <rect key="frame" x="189" y="134" width="130" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Leave comment"/>
+                                <connections>
+                                    <action selector="leaveComment:" destination="QBU-iH-lZS" eventType="touchUpInside" id="RCM-nS-HFi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jpl-ln-Wcm"/>
                     </view>
                     <connections>
                         <outlet property="disconnectButton" destination="Q4m-aI-DSs" id="486-fV-9Yz"/>
+                        <outlet property="leaveCommentButton" destination="qOz-uW-0bL" id="J2y-se-k2n"/>
                         <outlet property="signInButton" destination="vuD-5k-bvo" id="2ls-X0-FFJ"/>
                         <outlet property="signOutButton" destination="hTs-6A-S42" id="t0Q-l9-fwZ"/>
                         <outlet property="statusText" destination="woZ-Zq-qZb" id="QGs-0T-b32"/>

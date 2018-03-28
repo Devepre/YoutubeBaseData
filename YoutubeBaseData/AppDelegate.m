@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <GTLRYouTube.h> //for scopes
 
 @interface AppDelegate ()
 
@@ -18,6 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GIDSignIn sharedInstance].clientID = @"405503343976-d1bppmkerltkgi2lg3i83d7iujdqb214.apps.googleusercontent.com";
     [GIDSignIn sharedInstance].delegate = self;
+    [GIDSignIn sharedInstance].scopes = [NSArray arrayWithObjects:kGTLRAuthScopeYouTubeForceSsl, kGTLRAuthScopeYouTube, kGTLRAuthScopeYouTubeReadonly, kGTLRAuthScopeYouTubeUpload, kGTLRAuthScopeYouTubeYoutubepartner, kGTLRAuthScopeYouTubeYoutubepartnerChannelAudit, nil];
     
     return YES;
 }

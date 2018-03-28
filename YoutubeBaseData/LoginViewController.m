@@ -73,6 +73,44 @@
     [[GIDSignIn sharedInstance] disconnect];
 }
 
+- (IBAction)leaveComment:(UIButton *)sender {
+    NSString *channelId = @"UCreShqen9F2H2UgoQHm-EEg";
+    NSString *videoId = @"DvfByOGygt4";
+    NSString *text = @"нло прилетело и опубликовало эту надпись здесь";
+    
+    // Create a comment snippet with text.
+    GTLRYouTube_CommentSnippet *commentSnipet = [[GTLRYouTube_CommentSnippet alloc] init];
+    [commentSnipet setTextOriginal:text];
+    
+    // Create a top-level comment with snippet.
+    GTLRYouTube_Comment *topLevelComment = [[GTLRYouTube_Comment alloc] init];
+    [topLevelComment setSnippet:commentSnipet];
+    
+    // Create a comment thread snippet with channelId and top-level comment.
+    GTLRYouTube_CommentThreadSnippet *commentThreadSnippet = [[GTLRYouTube_CommentThreadSnippet alloc] init];
+    [commentThreadSnippet setChannelId:channelId];
+    [commentThreadSnippet setTopLevelComment:topLevelComment];
+    [commentThreadSnippet setVideoId:videoId];
+    
+    // Create a comment thread with snippet.
+    GTLRYouTube_CommentThread *commentThread = [[GTLRYouTube_CommentThread alloc] init];
+    [commentThread setSnippet:commentThreadSnippet];
+    
+    // Call the YouTube Data API's commentThreads.insert method to create a comment.
+    GTLRYouTubeQuery_CommentThreadsInsert *query = [GTLRYouTubeQuery_CommentThreadsInsert queryWithObject:commentThread part:@"snippet"];
+    
+    //execute
+    GTLRYouTubeService *service = [[GTLRYouTubeService alloc] init];
+    static NSString *apiKey = @"405503343976-d1bppmkerltkgi2lg3i83d7iujdqb214.apps.googleusercontent.com";
+    GIDSignIn *signIn = [GIDSignIn sharedInstance];
+    NSLog(@"AUTH: %@", signIn.currentUser.authentication);
+    service.APIKey = apiKey;
+    [service executeQuery:query completionHandler:^(GTLRServiceTicket * _Nonnull callbackTicket, id  _Nullable object, NSError * _Nullable callbackError) {
+        NSLog(@"object: %@\nError: %@", object, callbackError);
+    }];
+    
+}
+
 /*
 #pragma mark - Navigation
 

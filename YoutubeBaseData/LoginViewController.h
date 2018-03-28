@@ -8,11 +8,10 @@
 
 @interface LoginViewController : ViewController <GIDSignInUIDelegate>
 
-// [START viewcontroller_vars]
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
-@property (weak, nonatomic) IBOutlet UIButton *signOutButton;
-@property (weak, nonatomic) IBOutlet UIButton *disconnectButton;
-@property (weak, nonatomic) IBOutlet UILabel *statusText;
-// [END viewcontroller_vars]
+@property (weak, nonatomic) IBOutlet UIButton        *signOutButton;
+@property (weak, nonatomic) IBOutlet UIButton        *disconnectButton;
+@property (weak, nonatomic) IBOutlet UILabel         *statusText;
+@property (weak, nonatomic) IBOutlet UIButton        *leaveCommentButton;
 
 @end
