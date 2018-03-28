@@ -19,7 +19,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Do any additional setup after loading the view, typically from a nib.
     
     self.ytVideos = [[NSMutableArray alloc] init];
-    [self performYTTask];
+//    [self performYTTask];
 }
 
 - (void)performYTTask {
