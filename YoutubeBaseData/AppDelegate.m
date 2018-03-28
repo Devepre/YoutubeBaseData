@@ -16,8 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
     [GIDSignIn sharedInstance].clientID = @"405503343976-d1bppmkerltkgi2lg3i83d7iujdqb214.apps.googleusercontent.com";
     [GIDSignIn sharedInstance].delegate = self;
     
@@ -25,18 +23,7 @@
 }
 
 #pragma mark - Added Methods
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<NSString *, id> *)options {
-    return [[GIDSignIn sharedInstance] handleURL:url
-                               sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
-}
-
-// [START signin_handler]
-- (void)signIn:(GIDSignIn *)signIn
-didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
     // Perform any operations on signed in user here.
     NSString *userId = user.userID;                  // For client-side use only!
     NSString *idToken = user.authentication.idToken; // Safe to send to the server
@@ -44,7 +31,7 @@ didSignInForUser:(GIDGoogleUser *)user
     NSString *givenName = user.profile.givenName;
     NSString *familyName = user.profile.familyName;
     NSString *email = user.profile.email;
-    // [START_EXCLUDE]
+    
     NSDictionary *statusText = @{@"statusText":
                                      [NSString stringWithFormat:@"Signed in user: %@",
                                       fullName]};
@@ -52,25 +39,25 @@ didSignInForUser:(GIDGoogleUser *)user
      postNotificationName:@"ToggleAuthUINotification"
      object:nil
      userInfo:statusText];
-    // [END_EXCLUDE]
 }
-// [END signin_handler]
 
-// This callback is triggered after the disconnect call that revokes data
-// access to the user's resources has completed.
-// [START disconnect_handler]
-- (void)signIn:(GIDSignIn *)signIn
-didDisconnectWithUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
+// This callback is triggered after the disconnect call that revokes data access to the user's resources has completed.
+- (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
     // Perform any operations when the user disconnects from app here.
-    // [START_EXCLUDE]
+
     NSDictionary *statusText = @{@"statusText": @"Disconnected user" };
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"ToggleAuthUINotification"
      object:nil
      userInfo:statusText];
-    // [END_EXCLUDE]
 }
-// [END disconnect_handler]
+
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
 
 @end

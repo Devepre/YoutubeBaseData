@@ -1,3 +1,6 @@
+//https://developers.google.com/identity/sign-in/ios/start-integrating
+//https://github.com/googlesamples/google-services/tree/master/ios/signin
+
 #import "ViewController.h"
 #import <UIKit/UIKit.h>
 #import <Google/SignIn.h>
