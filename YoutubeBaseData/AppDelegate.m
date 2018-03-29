@@ -17,9 +17,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [GIDSignIn sharedInstance].clientID = @"405503343976-d1bppmkerltkgi2lg3i83d7iujdqb214.apps.googleusercontent.com";
-    [GIDSignIn sharedInstance].delegate = self;
-    [GIDSignIn sharedInstance].scopes = [NSArray arrayWithObjects:kGTLRAuthScopeYouTubeForceSsl, kGTLRAuthScopeYouTube, kGTLRAuthScopeYouTubeReadonly, kGTLRAuthScopeYouTubeUpload, kGTLRAuthScopeYouTubeYoutubepartner, kGTLRAuthScopeYouTubeYoutubepartnerChannelAudit, nil];
+    GIDSignIn *signIn = [GIDSignIn sharedInstance];
+    signIn.clientID = @"405503343976-d1bppmkerltkgi2lg3i83d7iujdqb214.apps.googleusercontent.com";
+    signIn.scopes = [NSArray arrayWithObjects:kGTLRAuthScopeYouTubeForceSsl, @"https://www.googleapis.com/auth/plus.login", nil];
+    signIn.delegate = self;
     
     return YES;
 }
@@ -54,9 +55,7 @@
      userInfo:statusText];
 }
 
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<NSString *, id> *)options {
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
     return [[GIDSignIn sharedInstance] handleURL:url
                                sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                                       annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
