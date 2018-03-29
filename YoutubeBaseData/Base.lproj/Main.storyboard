@@ -193,7 +193,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="trK-0m-Aax">
-                                <rect key="frame" x="-0.5" y="273" width="375" height="374"/>
+                                <rect key="frame" x="0.0" y="273" width="375" height="334"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Oe2-Zc-h4E">
@@ -210,16 +210,31 @@
                                     <outlet property="delegate" destination="Onj-am-GzY" id="Xn2-Py-vIp"/>
                                 </connections>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zDy-7o-rE0">
+                                <rect key="frame" x="20" y="617" width="248" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELt-aK-LR1">
+                                <rect key="frame" x="288" y="617" width="67" height="30"/>
+                                <state key="normal" title="Comment"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="top" secondItem="vFl-BT-Vma" secondAttribute="top" constant="20" id="0bS-CM-rKc"/>
+                            <constraint firstItem="vFl-BT-Vma" firstAttribute="trailing" secondItem="ELt-aK-LR1" secondAttribute="trailing" constant="20" id="0ws-1d-Pnz"/>
+                            <constraint firstItem="ELt-aK-LR1" firstAttribute="leading" secondItem="zDy-7o-rE0" secondAttribute="trailing" constant="20" id="1Gc-4J-HSd"/>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="width" secondItem="199-P0-Vko" secondAttribute="width" multiplier="4/5" id="2L6-AC-uGE"/>
                             <constraint firstItem="TCF-ri-gVE" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="57X-3r-nIk"/>
+                            <constraint firstItem="vFl-BT-Vma" firstAttribute="bottom" secondItem="ELt-aK-LR1" secondAttribute="bottom" constant="20" id="H5v-jD-MN8"/>
                             <constraint firstItem="trK-0m-Aax" firstAttribute="width" secondItem="199-P0-Vko" secondAttribute="width" id="Hss-GM-pMu"/>
+                            <constraint firstItem="zDy-7o-rE0" firstAttribute="leading" secondItem="vFl-BT-Vma" secondAttribute="leading" constant="20" id="O7L-3c-9De"/>
                             <constraint firstItem="trK-0m-Aax" firstAttribute="top" secondItem="TCF-ri-gVE" secondAttribute="bottom" constant="20" id="Wm7-35-acO"/>
+                            <constraint firstItem="zDy-7o-rE0" firstAttribute="top" secondItem="trK-0m-Aax" secondAttribute="bottom" constant="10" id="rwj-pE-dYc"/>
                             <constraint firstItem="trK-0m-Aax" firstAttribute="centerX" secondItem="199-P0-Vko" secondAttribute="centerX" id="tsD-TQ-xmG"/>
-                            <constraint firstItem="vFl-BT-Vma" firstAttribute="bottom" secondItem="trK-0m-Aax" secondAttribute="bottom" constant="20" id="zAh-3r-g76"/>
+                            <constraint firstItem="vFl-BT-Vma" firstAttribute="bottom" secondItem="zDy-7o-rE0" secondAttribute="bottom" constant="20" id="zjK-JI-2WC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vFl-BT-Vma"/>
                     </view>
