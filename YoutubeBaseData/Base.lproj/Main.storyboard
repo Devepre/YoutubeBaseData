@@ -97,9 +97,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mP-Oi-XBI">
                                 <rect key="frame" x="308" y="617" width="47" height="30"/>
                                 <state key="normal" title="Sign in"/>
-                                <connections>
-                                    <segue destination="QBU-iH-lZS" kind="show" id="bKe-Qc-Mov"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLM-sv-Kkw">
                                 <rect key="frame" x="242" y="617" width="46" height="30"/>
@@ -137,66 +134,6 @@
             </objects>
             <point key="canvasLocation" x="364" y="30.134932533733135"/>
         </scene>
-        <!--Login View Controller-->
-        <scene sceneID="f3Z-iv-AdF">
-            <objects>
-                <viewController id="QBU-iH-lZS" customClass="LoginViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gv0-eq-aJm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4m-aI-DSs">
-                                <rect key="frame" x="111" y="84" width="108" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Disconnect"/>
-                                <connections>
-                                    <action selector="didTapDisconnect:" destination="QBU-iH-lZS" eventType="touchUpInside" id="ada-z2-bsk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTs-6A-S42">
-                                <rect key="frame" x="238" y="84" width="81" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign out"/>
-                                <connections>
-                                    <action selector="didTapSignOut:" destination="QBU-iH-lZS" eventType="touchUpInside" id="SSd-D5-xaT"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Google Sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woZ-Zq-qZb">
-                                <rect key="frame" x="34" y="139" width="250" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vuD-5k-bvo" customClass="GIDSignInButton">
-                                <rect key="frame" x="16" y="83" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93945490600000003" green="1" blue="0.91010548250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOz-uW-0bL">
-                                <rect key="frame" x="189" y="134" width="130" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Leave comment"/>
-                                <connections>
-                                    <action selector="leaveComment:" destination="QBU-iH-lZS" eventType="touchUpInside" id="RCM-nS-HFi"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="jpl-ln-Wcm"/>
-                    </view>
-                    <connections>
-                        <outlet property="disconnectButton" destination="Q4m-aI-DSs" id="486-fV-9Yz"/>
-                        <outlet property="leaveCommentButton" destination="qOz-uW-0bL" id="J2y-se-k2n"/>
-                        <outlet property="signInButton" destination="vuD-5k-bvo" id="2ls-X0-FFJ"/>
-                        <outlet property="signOutButton" destination="hTs-6A-S42" id="t0Q-l9-fwZ"/>
-                        <outlet property="statusText" destination="woZ-Zq-qZb" id="QGs-0T-b32"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oNV-j8-7Mq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="324" y="852"/>
-        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Jz4-Xy-Mvd">
             <objects>
@@ -205,22 +142,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Trp-TA-7uB" customClass="GIDSignInButton">
-                                <rect key="frame" x="45" y="105" width="111" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Trp-TA-7uB" customClass="GIDSignInButton">
+                                <rect key="frame" x="22" y="83" width="111" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2n0-cY-Vps">
+                                <rect key="frame" x="159" y="84" width="57" height="30"/>
+                                <state key="normal" title="Sign out"/>
+                                <connections>
+                                    <action selector="didTapSignOut:" destination="sos-Yo-fNu" eventType="touchUpInside" id="fgp-rc-7gW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W28-cz-vgo">
+                                <rect key="frame" x="166.5" y="134" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32X-aT-GJg">
+                                <rect key="frame" x="236" y="84" width="78" height="30"/>
+                                <state key="normal" title="Disconnect"/>
+                                <connections>
+                                    <action selector="didTapDisconnect:" destination="sos-Yo-fNu" eventType="touchUpInside" id="pM0-GA-AhO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="32X-aT-GJg" firstAttribute="top" secondItem="fKB-di-cAy" secondAttribute="top" constant="20" id="CV1-ov-RjE"/>
+                            <constraint firstItem="2n0-cY-Vps" firstAttribute="centerX" secondItem="ba4-25-r6I" secondAttribute="centerX" id="Ekn-a8-WKc"/>
+                            <constraint firstItem="32X-aT-GJg" firstAttribute="leading" secondItem="2n0-cY-Vps" secondAttribute="trailing" constant="20" id="MFj-8y-8Bc"/>
+                            <constraint firstItem="Trp-TA-7uB" firstAttribute="top" secondItem="fKB-di-cAy" secondAttribute="top" constant="20" id="Ojj-3e-gde"/>
+                            <constraint firstItem="W28-cz-vgo" firstAttribute="top" secondItem="2n0-cY-Vps" secondAttribute="bottom" constant="20" id="Qy0-Sx-MPD"/>
+                            <constraint firstItem="Trp-TA-7uB" firstAttribute="centerX" secondItem="ba4-25-r6I" secondAttribute="centerX" id="e5b-eQ-bTt"/>
+                            <constraint firstItem="W28-cz-vgo" firstAttribute="centerX" secondItem="ba4-25-r6I" secondAttribute="centerX" id="id1-NF-qof"/>
+                            <constraint firstItem="2n0-cY-Vps" firstAttribute="top" secondItem="fKB-di-cAy" secondAttribute="top" constant="20" id="sBh-TX-i5D"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fKB-di-cAy"/>
                     </view>
                     <connections>
+                        <outlet property="disconnectButton" destination="32X-aT-GJg" id="x0i-t9-Zxo"/>
                         <outlet property="signInButton" destination="Trp-TA-7uB" id="UA6-1x-sVt"/>
+                        <outlet property="signOutButton" destination="2n0-cY-Vps" id="EUV-kh-kbe"/>
+                        <outlet property="statusLabel" destination="W28-cz-vgo" id="Znx-DW-pDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxY-6j-EpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="810.94452773613204"/>
+            <point key="canvasLocation" x="364" y="745"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="mhJ-q2-Kex">

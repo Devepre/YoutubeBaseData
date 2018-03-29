@@ -2,6 +2,8 @@
 
 @interface SignInViewController ()
 
+@property (nonatomic, strong) GIDSignIn *signIn;
+
 @end
 
 @implementation SignInViewController
@@ -13,11 +15,11 @@
     self.service = [[GTLRYouTubeService alloc] init];
     
     // Configure Google Sign-in.
-    GIDSignIn *signIn = [GIDSignIn sharedInstance];
-    signIn.delegate = self;
-    signIn.uiDelegate = self;
-    signIn.scopes = [NSArray arrayWithObjects:kGTLRAuthScopeYouTubeForceSsl, nil];
-    [signIn signInSilently];
+    self.signIn = [GIDSignIn sharedInstance];
+    self.signIn.delegate = self;
+    self.signIn.uiDelegate = self;
+    self.signIn.scopes = [NSArray arrayWithObjects:kGTLRAuthScopeYouTubeForceSsl, nil];
+    [self.signIn signInSilently];
 
 }
 
@@ -28,8 +30,9 @@
     } else {
         self.signInButton.hidden = true;
         self.service.authorizer = user.authentication.fetcherAuthorizer;
-        [self leaveComment];
+//        [self leaveComment];
     }
+    [self toggleAuthorizeUI];
 }
 
 - (void)leaveComment {
@@ -68,6 +71,34 @@
                       error:(NSError *)error {
     NSLog(@"Error: %@", error);
     NSLog(@"Object: %@", comments);
+}
+
+- (void)toggleAuthorizeUI {
+    if (self.signIn.currentUser.authentication == nil) {// Not signed in
+        self.statusLabel.text = @"You are not Authorized";
+        self.signInButton.hidden = NO;
+        self.signOutButton.hidden = YES;
+        self.disconnectButton.hidden = YES;
+    } else {// Signed in
+        self.statusLabel.text = [NSString stringWithFormat:@"Signed in as: %@ %@", self.signIn.currentUser.profile.name, self.signIn.currentUser.profile.familyName ? self.signIn.currentUser.profile.familyName : @""];
+        self.signInButton.hidden = YES;
+        self.signOutButton.hidden = NO;
+        self.disconnectButton.hidden = NO;
+    }
+}
+
+#pragma mark - Buttons Handling
+// Signs the user out of the application for scenarios such as switching profiles
+- (IBAction)didTapSignOut:(id)sender {
+    [[GIDSignIn sharedInstance] signOut];
+    [self toggleAuthorizeUI];
+}
+
+// Note: Disconnect revokes access to user data and should only be called in scenarios such as when the user deletes their account. More information
+// on revocation can be found here: https://goo.gl/Gx7oEG.
+- (IBAction)didTapDisconnect:(id)sender {
+    [[GIDSignIn sharedInstance] disconnect];
+    [self toggleAuthorizeUI];
 }
 
 /*
