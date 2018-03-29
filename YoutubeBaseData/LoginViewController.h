@@ -3,8 +3,10 @@
 
 #import "ViewController.h"
 #import <UIKit/UIKit.h>
-#import <Google/SignIn.h>
+//#import <Google/SignIn.h>
 #import <GTLRYouTube.h>
+@import Firebase;
+@import GoogleSignIn;
 
 @interface LoginViewController : UIViewController <GIDSignInUIDelegate>
 

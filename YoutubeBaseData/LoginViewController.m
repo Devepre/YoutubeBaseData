@@ -2,6 +2,8 @@
 
 @interface LoginViewController ()
 
+@property GIDGoogleUser *user;
+
 @end
 
 @implementation LoginViewController
@@ -12,7 +14,7 @@
     [GIDSignIn sharedInstance].uiDelegate = self;
     
     // Uncomment to automatically sign in the user.
-    //[[GIDSignIn sharedInstance] signInSilently];
+    [[GIDSignIn sharedInstance] signInSilently];
     
     [[NSNotificationCenter defaultCenter]
      addObserver:self
@@ -36,16 +38,6 @@
     }
 }
 
-- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    // Perform any operations on signed in user here.
-    NSString *userId = user.userID;                  // For client-side use only!
-    NSString *idToken = user.authentication.idToken; // Safe to send to the server
-    NSString *name = user.profile.name;
-    NSString *email = user.profile.email;
-    NSLog(@"Customer details: %@ %@ %@ %@", userId, idToken, name, email);
-    // ...
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter]
      removeObserver:self
@@ -57,7 +49,9 @@
 - (void)receiveToggleAuthUINotification:(NSNotification *) notification {
     if ([notification.name isEqualToString:@"ToggleAuthUINotification"]) {
         [self toggleAuthUI];
-        self.statusText.text = notification.userInfo[@"statusText"];
+        self.user = notification.userInfo[@"googleUser"];
+//        self.statusText.text = self.user.profile.givenName;
+        self.statusText.text = [GIDSignIn sharedInstance].currentUser.profile.givenName;
     }
 }
 
@@ -65,18 +59,21 @@
 - (IBAction)didTapSignOut:(id)sender {
     [[GIDSignIn sharedInstance] signOut];
     [self toggleAuthUI];
+    self.user = nil;
 }
 
 // Note: Disconnect revokes access to user data and should only be called in scenarios such as when the user deletes their account. More information
 // on revocation can be found here: https://goo.gl/Gx7oEG.
 - (IBAction)didTapDisconnect:(id)sender {
     [[GIDSignIn sharedInstance] disconnect];
+    self.user = nil;
 }
 
 - (IBAction)leaveComment:(UIButton *)sender {
     NSString *channelId = @"UCreShqen9F2H2UgoQHm-EEg";
     NSString *videoId = @"DvfByOGygt4";
-    NSString *text = @"нло прилетело и опубликовало эту надпись здесь";
+//    NSString *text = @"нло прилетело и опубликовало эту надпись здесь";
+    NSString *text = @"100500";
     
     // Create a comment snippet with text.
     GTLRYouTube_CommentSnippet *commentSnipet = [[GTLRYouTube_CommentSnippet alloc] init];
@@ -101,10 +98,7 @@
     
     //execute
     GTLRYouTubeService *service = [[GTLRYouTubeService alloc] init];
-    static NSString *apiKey = @"405503343976-d1bppmkerltkgi2lg3i83d7iujdqb214.apps.googleusercontent.com";
-    GIDSignIn *signIn = [GIDSignIn sharedInstance];
-    NSLog(@"AUTH: %@", signIn.currentUser.authentication);
-    service.APIKey = apiKey;
+    service.authorizer = [GIDSignIn sharedInstance].currentUser.authentication.fetcherAuthorizer;
     [service executeQuery:query completionHandler:^(GTLRServiceTicket * _Nonnull callbackTicket, id  _Nullable object, NSError * _Nullable callbackError) {
         NSLog(@"object: %@\nError: %@", object, callbackError);
     }];

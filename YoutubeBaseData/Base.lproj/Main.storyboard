@@ -101,12 +101,20 @@
                                     <segue destination="QBU-iH-lZS" kind="show" id="bKe-Qc-Mov"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLM-sv-Kkw">
+                                <rect key="frame" x="242" y="617" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="sos-Yo-fNu" kind="show" id="uNv-tS-Ere"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="yfn-aI-yI5" firstAttribute="leading" secondItem="L4w-We-usp" secondAttribute="trailing" constant="20" id="53I-on-D3x"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bvv-4h-7zo" secondAttribute="bottom" constant="20" id="68U-ib-E3I"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4mP-Oi-XBI" secondAttribute="trailing" constant="20" id="9cy-Y8-01G"/>
+                            <constraint firstItem="4mP-Oi-XBI" firstAttribute="leading" secondItem="yLM-sv-Kkw" secondAttribute="trailing" constant="20" id="JIV-Tq-bVp"/>
                             <constraint firstItem="L4w-We-usp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Jub-Qn-bcX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4mP-Oi-XBI" secondAttribute="bottom" constant="20" id="KiR-pJ-32L"/>
                             <constraint firstItem="Bvv-4h-7zo" firstAttribute="top" secondItem="yfn-aI-yI5" secondAttribute="bottom" constant="20" id="Y6z-KR-3gq"/>
@@ -115,6 +123,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bvv-4h-7zo" secondAttribute="trailing" constant="20" id="gQ3-M8-xX1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yfn-aI-yI5" secondAttribute="trailing" constant="20" id="nmF-Ap-zDV"/>
                             <constraint firstItem="L4w-We-usp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="s8j-4U-VSP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yLM-sv-Kkw" secondAttribute="bottom" constant="20" id="zdb-bO-jdM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -186,7 +195,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNV-j8-7Mq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="364" y="744.3778110944528"/>
+            <point key="canvasLocation" x="324" y="852"/>
+        </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="Jz4-Xy-Mvd">
+            <objects>
+                <viewController id="sos-Yo-fNu" customClass="SignInViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ba4-25-r6I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Trp-TA-7uB" customClass="GIDSignInButton">
+                                <rect key="frame" x="45" y="105" width="111" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fKB-di-cAy"/>
+                    </view>
+                    <connections>
+                        <outlet property="signInButton" destination="Trp-TA-7uB" id="UA6-1x-sVt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sxY-6j-EpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1140" y="810.94452773613204"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="mhJ-q2-Kex">
