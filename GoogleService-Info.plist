@@ -2,27 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>405503343976-d1bppmkerltkgi2lg3i83d7iujdqb214.apps.googleusercontent.com</string>
+	<string>405503343976-4s1iucinfrv7mlk7m6u185esv7vh6hms.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.405503343976-d1bppmkerltkgi2lg3i83d7iujdqb214</string>
+	<string>com.googleusercontent.apps.405503343976-4s1iucinfrv7mlk7m6u185esv7vh6hms</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBBo21dMkwP6JcxVZ022YFACVvcStF-ICw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>405503343976</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.del.sk.YoutubeBaseData.YoutubeBaseData</string>
 	<key>PROJECT_ID</key>
 	<string>youtubebasicdata</string>
+	<key>STORAGE_BUCKET</key>
+	<string>youtubebasicdata.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
 	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:405503343976:ios:b3bdce8e2937ed8b</string>
+	<key>DATABASE_URL</key>
+	<string>https://basicdata.firebaseio.com</string>
 </dict>
 </plist>
