@@ -21,14 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4w-We-usp">
-                                <rect key="frame" x="20" y="84" width="84" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search phrase" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yfn-aI-yI5">
-                                <rect key="frame" x="124" y="84" width="231" height="30"/>
+                                <rect key="frame" x="87" y="84" width="268" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -94,13 +88,9 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="exI-iD-Qqv"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mP-Oi-XBI">
-                                <rect key="frame" x="308" y="617" width="47" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLM-sv-Kkw">
+                                <rect key="frame" x="20" y="84" width="47" height="30"/>
                                 <state key="normal" title="Sign in"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLM-sv-Kkw">
-                                <rect key="frame" x="242" y="617" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="sos-Yo-fNu" kind="show" id="uNv-tS-Ere"/>
                                 </connections>
@@ -108,19 +98,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="yfn-aI-yI5" firstAttribute="leading" secondItem="L4w-We-usp" secondAttribute="trailing" constant="20" id="53I-on-D3x"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bvv-4h-7zo" secondAttribute="bottom" constant="20" id="68U-ib-E3I"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4mP-Oi-XBI" secondAttribute="trailing" constant="20" id="9cy-Y8-01G"/>
-                            <constraint firstItem="4mP-Oi-XBI" firstAttribute="leading" secondItem="yLM-sv-Kkw" secondAttribute="trailing" constant="20" id="JIV-Tq-bVp"/>
-                            <constraint firstItem="L4w-We-usp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Jub-Qn-bcX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4mP-Oi-XBI" secondAttribute="bottom" constant="20" id="KiR-pJ-32L"/>
+                            <constraint firstItem="yLM-sv-Kkw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="QyB-Pd-OB6"/>
+                            <constraint firstItem="yLM-sv-Kkw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="TYx-xc-la3"/>
                             <constraint firstItem="Bvv-4h-7zo" firstAttribute="top" secondItem="yfn-aI-yI5" secondAttribute="bottom" constant="20" id="Y6z-KR-3gq"/>
                             <constraint firstItem="Bvv-4h-7zo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="cTn-Ia-mmz"/>
                             <constraint firstItem="yfn-aI-yI5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="fMU-CC-uYb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bvv-4h-7zo" secondAttribute="trailing" constant="20" id="gQ3-M8-xX1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yfn-aI-yI5" secondAttribute="trailing" constant="20" id="nmF-Ap-zDV"/>
-                            <constraint firstItem="L4w-We-usp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="s8j-4U-VSP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yLM-sv-Kkw" secondAttribute="bottom" constant="20" id="zdb-bO-jdM"/>
+                            <constraint firstItem="yfn-aI-yI5" firstAttribute="leading" secondItem="yLM-sv-Kkw" secondAttribute="trailing" constant="20" id="w7G-cQ-hZd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
