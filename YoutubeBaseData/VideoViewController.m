@@ -8,7 +8,6 @@
 
 @interface VideoViewController ()
 
-@property (nonatomic, strong) NSString              *commentString;
 @property (nonatomic, strong) GTLRYouTubeService    *service;
 @property NSArray                                   *commentThreads;
 
@@ -67,11 +66,6 @@
 }
 
 #pragma mark - <UITextFieldDelegate>
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    self.commentString = textField.text;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
@@ -79,6 +73,7 @@
 
 #pragma mark - Buttons hadnling
 - (IBAction)commentButton:(UIButton *)sender {
+    [self.commentTextField resignFirstResponder];
     [self leaveComment];
 }
 
@@ -92,7 +87,7 @@
     
     // Create a comment snippet with text.
     GTLRYouTube_CommentSnippet *commentSnipet = [[GTLRYouTube_CommentSnippet alloc] init];
-    [commentSnipet setTextOriginal:self.commentString];
+    [commentSnipet setTextOriginal:self.commentTextField.text];
     
     // Create a top-level comment with snippet.
     GTLRYouTube_Comment *topLevelComment = [[GTLRYouTube_Comment alloc] init];
