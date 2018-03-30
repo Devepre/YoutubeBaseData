@@ -12,27 +12,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Initialize the service object.
-    [[GlobalContainer sharedInstance] setService:[[GTLRYouTubeService alloc] init]];
-    
-    // Configure Google Sign-in.
     self.signIn = [GIDSignIn sharedInstance];
-    self.signIn.delegate = self;
     self.signIn.uiDelegate = self;
-    self.signIn.scopes = [NSArray arrayWithObjects:kGTLRAuthScopeYouTubeForceSsl, nil];
-    [self.signIn signInSilently];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveToggleAuthUINotification:)
+                                                 name:@"ToggleAuthUINotification"
+                                               object:nil];
+    [self toggleAuthorizeUI];
 
 }
 
-- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    if (error) {
-        NSLog(@"Error Sign in: %@", error.localizedDescription);
-        [GlobalContainer sharedInstance].service.authorizer = nil;
-    } else {
-        self.signInButton.hidden = true;
-        [GlobalContainer sharedInstance].service.authorizer = user.authentication.fetcherAuthorizer;
+- (void)receiveToggleAuthUINotification:(NSNotification *) notification {
+    if ([notification.name isEqualToString:@"ToggleAuthUINotification"]) {
+        [self toggleAuthorizeUI];
     }
-    [self toggleAuthorizeUI];
 }
 
 - (void)toggleAuthorizeUI {
@@ -53,6 +46,7 @@
 // Signs the user out of the application for scenarios such as switching profiles
 - (IBAction)didTapSignOut:(id)sender {
     [[GIDSignIn sharedInstance] signOut];
+    [GlobalContainer sharedInstance].service.authorizer = nil;
     [self toggleAuthorizeUI];
 }
 
@@ -61,6 +55,12 @@
 - (IBAction)didTapDisconnect:(id)sender {
     [[GIDSignIn sharedInstance] disconnect];
     [self toggleAuthorizeUI];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"ToggleAuthUINotification"
+                                                  object:nil];
 }
 
 /*
