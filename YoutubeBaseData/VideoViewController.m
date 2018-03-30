@@ -115,8 +115,27 @@
 - (void)displayAddedComment:(GTLRServiceTicket *)ticket
          finishedWithObject:(GTLRYouTubeQuery_CommentThreadsInsert *)comments
                       error:(NSError *)error {
-    NSLog(@"Error: %@", error);
-    NSLog(@"Object: %@", comments);
+    if (error) {
+        [self showAlert:@"Error" message:error.localizedDescription];
+    } else {
+        self.commentTextField.text = @"";
+//        [self showAlert:@"Comment added" message:nil];
+        [self performYTTask];
+    }
+    
+}
+
+- (void)showAlert:(NSString *)title message:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * action) {
+                                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                                               }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*
