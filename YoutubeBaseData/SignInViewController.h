@@ -7,7 +7,6 @@
 @property (nonatomic, strong) IBOutlet GIDSignInButton  *signInButton;
 @property (weak, nonatomic) IBOutlet UIButton           *signOutButton;
 @property (weak, nonatomic) IBOutlet UIButton           *disconnectButton;
-@property (nonatomic, strong) GTLRYouTubeService        *service;
 @property (weak, nonatomic) IBOutlet UILabel            *statusLabel;
 
 @end

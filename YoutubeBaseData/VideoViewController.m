@@ -3,10 +3,14 @@
 #import "VideoManager.h"
 #import "CommentThread.h"
 #import "Comment.h"
+#import <GTLRYouTube.h>
+#import "GlobalContainer.h"
 
 @interface VideoViewController ()
 
-@property NSArray *commentThreads;
+@property (nonatomic, strong) NSString              *commentString;
+@property (nonatomic, strong) GTLRYouTubeService    *service;
+@property NSArray                                   *commentThreads;
 
 @end
 
@@ -60,6 +64,64 @@
     cell.textLabel.text = [topLevelComment textDisplay];
     
     return cell;
+}
+
+#pragma mark - <UITextFieldDelegate>
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.commentString = textField.text;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark - Buttons hadnling
+- (IBAction)commentButton:(UIButton *)sender {
+    [self leaveComment];
+}
+
+- (void)leaveComment {
+    // Initialize the service object.
+//    self.service = [[GTLRYouTubeService alloc] init];
+    self.service = [GlobalContainer sharedInstance].service;
+    
+    NSString *channelId = self.video.channelID;
+    NSString *videoId = self.video.videoID;
+    
+    // Create a comment snippet with text.
+    GTLRYouTube_CommentSnippet *commentSnipet = [[GTLRYouTube_CommentSnippet alloc] init];
+    [commentSnipet setTextOriginal:self.commentString];
+    
+    // Create a top-level comment with snippet.
+    GTLRYouTube_Comment *topLevelComment = [[GTLRYouTube_Comment alloc] init];
+    [topLevelComment setSnippet:commentSnipet];
+    
+    // Create a comment thread snippet with channelId and top-level comment.
+    GTLRYouTube_CommentThreadSnippet *commentThreadSnippet = [[GTLRYouTube_CommentThreadSnippet alloc] init];
+    [commentThreadSnippet setChannelId:channelId];
+    [commentThreadSnippet setTopLevelComment:topLevelComment];
+    [commentThreadSnippet setVideoId:videoId];
+    
+    // Create a comment thread with snippet.
+    GTLRYouTube_CommentThread *commentThread = [[GTLRYouTube_CommentThread alloc] init];
+    [commentThread setSnippet:commentThreadSnippet];
+    
+    // Call the YouTube Data API's commentThreads.insert method to create a comment.
+    GTLRYouTubeQuery_CommentThreadsInsert *query = [GTLRYouTubeQuery_CommentThreadsInsert queryWithObject:commentThread part:@"snippet"];
+    
+    //execute
+//    [self.service executeQuery:query
+    [[GlobalContainer sharedInstance].service executeQuery:query
+                      delegate:self
+             didFinishSelector:@selector(displayAddedComment:finishedWithObject:error:)];
+}
+- (void)displayAddedComment:(GTLRServiceTicket *)ticket
+         finishedWithObject:(GTLRYouTubeQuery_CommentThreadsInsert *)comments
+                      error:(NSError *)error {
+    NSLog(@"Error: %@", error);
+    NSLog(@"Object: %@", comments);
 }
 
 /*

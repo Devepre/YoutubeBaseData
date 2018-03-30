@@ -215,10 +215,16 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Onj-am-GzY" id="U5p-1l-5rj"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELt-aK-LR1">
                                 <rect key="frame" x="288" y="617" width="67" height="30"/>
                                 <state key="normal" title="Comment"/>
+                                <connections>
+                                    <action selector="commentButton:" destination="Onj-am-GzY" eventType="touchUpInside" id="oNJ-md-ln2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -239,6 +245,8 @@
                         <viewLayoutGuide key="safeArea" id="vFl-BT-Vma"/>
                     </view>
                     <connections>
+                        <outlet property="commentButton" destination="ELt-aK-LR1" id="Ejp-WY-LiL"/>
+                        <outlet property="commentTextField" destination="zDy-7o-rE0" id="A18-13-oWo"/>
                         <outlet property="commentsTable" destination="trK-0m-Aax" id="kCg-Hb-5YZ"/>
                         <outlet property="videoPlayer" destination="TCF-ri-gVE" id="z5U-MO-AnE"/>
                     </connections>
